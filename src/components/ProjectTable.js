@@ -1,7 +1,7 @@
 import { Table, TableHead, TableBody, TableRow, TableCell } from '@mui/material';
 import './ProjectTable.css';
 
-function ProjectTable() {
+function ProjectTable({projects}) {
   return(
     <div classname = "MainTable">
 <Table>
@@ -14,10 +14,11 @@ function ProjectTable() {
     </TableRow>
      </div>
   </TableHead>
-  <TableBody>
-    <TableRow>
-      <TableCell>Default Project</TableCell>
-      <TableCell>React-Manager Project</TableCell>
+ <TableBody>
+        {projects.map((project) => (
+          <TableRow key={project.id}>
+            <TableCell>{project.name}</TableCell>
+            <TableCell>{project.description}</TableCell>
       <TableCell>
         <button>
           Edit
@@ -27,6 +28,7 @@ function ProjectTable() {
         </button>
         </TableCell>
     </TableRow>
+        ))}
   </TableBody>
 </Table>
 </div>
