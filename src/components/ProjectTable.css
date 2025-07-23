@@ -1,0 +1,7 @@
+.FirstRow{
+  display: flex;
+  justify-content: center;  /* horizontal */
+  align-items: center;      /* vertical */
+  height: 200px;            /* or any height */
+  font-weight: bold;
+}

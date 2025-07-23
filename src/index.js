@@ -5,11 +5,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { store } from './app/store'; // Import the store
+import { Provider } from 'react-redux'; // Import the Provider
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-         <App/>
+    <BrowserRouter> {/* wrapping app with BrowserRouter */}
+         <Provider store={store}> {/* wrapping app with the Store Provider */}
+           <App />
+         </Provider>
     </BrowserRouter>
   </React.StrictMode>
 );
