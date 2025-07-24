@@ -10,3 +10,14 @@ export const validation = yup.object().shape({
     .min(5, 'Project must have at least a brief description'),
 });
 
+
+export const validation2 = yup.object().shape({
+  title: yup
+    .string()
+    .required("task can't be empty, otherwise it's not even a task"),
+  dueDate: yup
+    .string()
+    .required('A task must have a due data')
+});
+
+

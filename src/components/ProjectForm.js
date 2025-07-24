@@ -10,7 +10,8 @@
 
   const onSubmit = (data) =>{
     //Providing user feedback that the form was successfully submitted.
-    console.log(data);
+    console.log("Form Successfully Submitted, Congratulations!");
+    alert("Project Added Successfully!")
   }
 
   return (
@@ -40,7 +41,7 @@
         type="text" 
         placeholder="Description"
       />
-      {errors.project && <p>{errors.project.message}</p>}
+      {errors.description && <p>{errors.description.message}</p>}
       <button type="submit">Add Project</button>
     </form>
   );

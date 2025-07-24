@@ -1,22 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+
+//initializing the projects state
+ const firstProject = {id: 1, name: "InitialProject", description:"React-Manager Project"};
+
 const initialState = {
-  projects: [], 
-  projectsCount: 0,
+  array: [firstProject], 
+  count: 1,
 };
 
 export const projectsSlice = createSlice({
-  name: 'project',
+  name: 'projects',
   initialState,
   reducers: {
     addProject: (state, action) => {
-      state.projects.push(action.payload); // action.payload is the item we pass
-      state.projectsCount = state.projects.length;
+      state.array.push(action.payload); // action.payload is the item we pass
+      state.count = state.array.length;
     },
     removeProject: (state, action) => {
       // action.payload is the id of the item to remove
-      state.projects = state.projects.filter(project => project.id !== action.payload);
-      state.projectsCount = state.projects.length;
+      state.array = state.array.filter(project => project.id !== action.payload);
+      state.count = state.array.length;
     },
   },
 });
