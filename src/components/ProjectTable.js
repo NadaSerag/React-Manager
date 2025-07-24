@@ -1,7 +1,15 @@
 import { Table, TableHead, TableBody, TableRow, TableCell } from '@mui/material';
 import './ProjectTable.css';
+import { useDispatch } from 'react-redux';
+import { removeProject } from '../features/projects/projectsSlice';
+import { useSelector } from 'react-redux';
 
-function ProjectTable({projects}) {
+
+function ProjectTable() {
+
+  const projectsCalimedFromStore = useSelector((state) => state.projects.array);
+  const dispatch = useDispatch();
+
   return(
     <div classname = "MainTable">
 <Table>
@@ -15,7 +23,7 @@ function ProjectTable({projects}) {
      </div>
   </TableHead>
  <TableBody>
-        {projects.map((project) => (
+        {projectsCalimedFromStore.map((project) => (
           <TableRow key={project.id}>
             <TableCell>{project.name}</TableCell>
             <TableCell>{project.description}</TableCell>
@@ -23,7 +31,7 @@ function ProjectTable({projects}) {
         <button>
           Edit
         </button>
-        <button>
+        <button onClick= {() => {dispatch(removeProject(project.id))}}>
           Delete
         </button>
         </TableCell>

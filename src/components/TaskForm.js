@@ -2,21 +2,30 @@
  import { yupResolver } from '@hookform/resolvers/yup';
  import { validation2 } from "./YupFormValidation";
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { addTask } from '../features/tasks/taskSlice';
 
 
 
  function TaskForm() {
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const { register, handleSubmit, formState: { errors }, reset } = useForm({
   resolver: yupResolver(validation2)
 });
 
+ const dispatch = useDispatch();
+
   const onSubmit = (data) =>{
+    
     //Providing user feedback that the form was successfully submitted.
     console.log("Form Successfully Submitted, Congratulations!");
-    alert("Task Added Successfully!")
+   
+    // dispatch the addTask action with the task as the payload
+    dispatch(addTask(data));
+    reset();
+
   }
 
-  const projects = useSelector((state) => state.projects.array);
+  const projectsClaimedFromStore = useSelector((state) => state.projects.array);
 
   return (
     //handleSubmit prevents the deault behaviour of the form
@@ -28,10 +37,10 @@ import { useSelector } from 'react-redux';
       />
       {errors.title && <p>{errors.title.message}</p>}
 
-      <label>Choose an Associated-Project</label>
-      <select {...register("status")}>
+      <label>Choose Project</label>
+      <select {...register("associatedProject")}>
         <option value="">--Select project--</option>
-       {projects.map((project) =>
+       {projectsClaimedFromStore.map((project) =>
         <option value= { project.name }> { project.name } </option>
           )}
       </select>
@@ -39,9 +48,9 @@ import { useSelector } from 'react-redux';
       <label>Choose Status:</label>
       <select {...register("status")}>
         <option value="">--Select Status--</option>
-        <option value="toDo">To Do</option>
-        <option value="inProgress">In Progress...</option>
-        <option value="done">Done</option>
+        <option value="To Do">To Do</option>
+        <option value="In Progress">In Progress...</option>
+        <option value="Done">Done</option>
       </select>
       <input {...register("dueDate")}
         type="text" 

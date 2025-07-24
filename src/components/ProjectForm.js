@@ -1,18 +1,33 @@
  import { useForm } from 'react-hook-form';
  import { yupResolver } from '@hookform/resolvers/yup';
  import { validation } from "./YupFormValidation";
+ import { useDispatch } from 'react-redux';
+ import { addProject } from '../features/projects/projectsSlice';
 
- // We receive the 'onAddTask' function as a prop
  function ProjectForm() {
-  const { register, handleSubmit, formState: { errors } } = useForm({
+
+  //'reset' is a built-in reset() function that comes from useForm(). 
+  // its used to clear the input values after submitting a form in React Hook Form.
+
+  //we're here destructuring reset from useForm():
+  const { register, handleSubmit, formState: { errors }, reset} = useForm({
   resolver: yupResolver(validation)
 });
+
+  const dispatch = useDispatch();
 
   const onSubmit = (data) =>{
     //Providing user feedback that the form was successfully submitted.
     console.log("Form Successfully Submitted, Congratulations!");
-    alert("Project Added Successfully!")
+    dispatch(addProject(data));
+
+    //adding a slight delay here so that this way, React has a moment to update the table before the alert appears.
+    setTimeout(() => {alert("Project Added Successfully!")}, 100); 
+
+    //then we're calling reset() inside onSubmit() after dispatching to clear the form fields.
+    reset();
   }
+
 
   return (
     //handleSubmit prevents the deault behaviour of the form
@@ -28,7 +43,7 @@
       We can also use custom validation using 'validate', example: 'validate: (value) => value.includes("@"),'
       But we already used validation from yup so no need for that here.
       */}
-      <input {...register("project")}
+      <input {...register("name")}
         type="text"
         placeholder="Add a new project" 
       />
@@ -46,4 +61,5 @@
     </form>
   );
  }
+
  export default ProjectForm;

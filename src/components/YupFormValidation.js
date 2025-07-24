@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 
 export const validation = yup.object().shape({
-  project: yup
+  name: yup
     .string()
     .required('A project must be entered'),
   description: yup
