@@ -1,0 +1,28 @@
+{
+  "projects": [
+    {
+      "id": 111222,
+      "name": "React Manager",
+      "description": "Manage tasks and projects app using react and supportive libraries."
+    },
+    {
+      "id": 222444,
+      "name": "API Integrator",
+      "description": "Handle API endpoints"
+    }
+  ],
+  "tasks": [
+    {
+     "title": "Task 1",
+     "associatedProject": "API Integrator",
+     "status": "To Do",
+     "dueDate": "7/10/2025"
+    },
+    {
+    "title": "Task 2",
+     "associatedProject": "React Manager",
+     "status": "Done",
+     "dueDate": "7/27/2025"
+    }
+  ]
+}
