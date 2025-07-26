@@ -11,10 +11,10 @@ const initialState = {
   count: 1,
 };
 
-export const fetchProjects = createAsyncThunk('projects/fetchProjects', async () => {
-  const response = await axiosInstance.get('/projects');
-  return response.data;
-});
+// export const fetchProjects = createAsyncThunk('projects/fetchProjects', async () => {
+//   const response = await axiosInstance.get('/projects');
+//   return response.data;
+// });
 
 export const projectsSlice = createSlice({
   name: 'projects',
