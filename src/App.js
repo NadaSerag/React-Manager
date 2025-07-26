@@ -1,12 +1,10 @@
  import { Routes, Route, Link } from 'react-router-dom';
 import './App.css';
-import HomePage from './pages/HomePage';
- import ProjectsPage from './pages/ProjectsPage';
- import TasksPage from './pages/TasksPage';
- import { CssBaseline, ThemeProvider } from '@mui/material';
+import HomePage from './pages/Dashboard';
+import ProjectsPage from './pages/ProjectsPage';
+import TasksPage from './pages/TasksPage';
+import { CssBaseline, ThemeProvider } from '@mui/material';
 import { useSelector } from 'react-redux';
-import lightTheme from './theme/lightTheme';
-import darkTheme from './theme/darkTheme';
 import { useDispatch } from 'react-redux';
 import { toggleTheme } from './features/themes/themeSlice';
 
@@ -23,7 +21,7 @@ function App() {
        <ThemeProvider theme={theme}>
         <CssBaseline /> 
       <nav>
-        <Link to="/">Home</Link>
+        <Link to="/">Dashboard</Link>
         <Link to="/tasks">Tasks</Link>
         <Link to="/projects">Projects</Link>
       </nav>
