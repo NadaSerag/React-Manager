@@ -1,8 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
-
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axiosInstance from '../../api/axios';
 
 //initializing the projects state
- const firstProject = {id: 1, name: "InitialProject", description:"React-Manager Project"};
+const firstProject = {id: 1, name: "InitialProject", description:"React-Manager Project"};
  
 //the state:
 //The actual data this slice manages (the array and the count)
@@ -10,6 +10,11 @@ const initialState = {
   array: [firstProject], 
   count: 1,
 };
+
+export const fetchProjects = createAsyncThunk('projects/fetchProjects', async () => {
+  const response = await axiosInstance.get('/projects');
+  return response.data;
+});
 
 export const projectsSlice = createSlice({
   name: 'projects',

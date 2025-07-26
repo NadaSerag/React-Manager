@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import taskReducer from '../features/tasks/taskSlice.js';
 import projectsReducer from '../features/projects/projectsSlice.js';
+import themeReducer from '../features/themes/themeSlice.js';
 
 export const store = configureStore({
   //configureStore will take an object as a parameter,
@@ -9,6 +10,7 @@ export const store = configureStore({
     //key-value pairs
     //Slice name : reducer function for that slice
     projects: projectsReducer,
-    tasks: taskReducer
+    tasks: taskReducer,
+    themes: themeReducer,
   },
 });
